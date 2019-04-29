@@ -39,9 +39,9 @@ This implementation has the following features:
 
 - **It supports three pooling methods**. Notice that only **roi align** is revised to match the implementation in Caffe2. So, use it.
 
-- **It is memory efficient**. For data batching, there are two techiniques available to reduce memory usage: 1) *Aspect grouping*: group images with similar aspect ratio in a batch 2) *Aspect cropping*: crop images that are too long. Aspect grouping is implemented in Detectron, so it's used for default. Aspect cropping is the idea from [jwyang/faster-rcnn.pytorch](https://github.com/jwyang/faster-rcnn.pytorch), and it's not used for default.
+- **It is memory efficient**. For data batching, there are two techniques available to reduce memory usage: 1) *Aspect grouping*: group images with similar aspect ratio in a batch 2) *Aspect cropping*: crop images that are too long. Aspect grouping is implemented in Detectron, so it's used for default. Aspect cropping is the idea from [jwyang/faster-rcnn.pytorch](https://github.com/jwyang/faster-rcnn.pytorch), and it's not used for default.
 
-  Besides of that, I implement a customized `nn.DataParallel ` module which enables different batch blob size on different gpus. Check [My nn.DataParallel](#my-nndataparallel) section for more details about this.
+  Besides of that, I implement a customized `nn.DataParallel` module which enables different batch blob size on different gpus. Check [My nn.DataParallel](#my-nndataparallel) section for more details about this.
 
 ## News
 
@@ -70,9 +70,9 @@ Tested under python3.
   - opencv
   - pyyaml
   - packaging
-  - [pycocotools](https://github.com/cocodataset/cocoapi)  — for COCO dataset, also available from pip.
+  - [pycocotools](https://github.com/cocodataset/cocoapi)  — for COCO dataset, also available from `pip`.
   - tensorboardX  — for logging the losses in Tensorboard
-- An NVIDAI GPU and CUDA 8.0 or higher. Some operations only have gpu implementation.
+- An NVIDIA GPU and CUDA 8.0 or higher. Some operations only have gpu implementation.
 - **NOTICE**: different versions of Pytorch package have different memory usages.
 
 ### Compilation
@@ -141,7 +141,7 @@ I use ImageNet pretrained weights from Caffe for the backbone networks.
 
 Download them and put them into the `{repo_root}/data/pretrained_model`.
 
-You can the following command to download them all:
+You can run the following command to download them all:
 
 - extra required packages: `argparse_color_formater`, `colorama`, `requests`
 
@@ -198,7 +198,7 @@ Take mask-rcnn with res50 backbone for example.
 python tools/train_net_step.py --dataset coco2017 --cfg configs/baselines/e2e_mask_rcnn_R-50-C4.yml --use_tfboard --bs {batch_size} --nw {num_workers}
 ```
 
-Use `--bs` to overwrite the default batch size to a proper value that fits into your GPUs. Simliar for `--nw`, number of data loader threads defaults to 4 in config.py.
+Use `--bs` to overwrite the default batch size to a proper value that fits into your GPUs. Similar for `--nw`, number of data loader threads defaults to 4 in `config.py`.
 
 Specify `—-use_tfboard` to log the losses on Tensorboard.
 
@@ -274,7 +274,7 @@ python tools/test_net.py --dataset coco2017 --cfg config/baselines/e2e_mask_rcnn
 ```
 Use `--load_detectron` to load Detectron's checkpoint. If multiple gpus are available, add `--multi-gpu-testing`.
 
-Specify a different output directry, use `--output_dir {...}`. Defaults to `{the/parent/dir/of/checkpoint}/test`
+Specify a different output directory, use `--output_dir {...}`. Defaults to `{the/parent/dir/of/checkpoint}/test`
 
 ### Visualize the training results on images
 ```
